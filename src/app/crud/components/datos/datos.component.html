@@ -1,1 +1,45 @@
-<p>datos works!</p>
+<h1 class="display-4 title">Informacion</h1>
+<hr />
+<form novalidate #myForm="ngForm">
+  <kendo-grid
+    [kendoGridTemplateEditing]="createNew"
+    [kendoGridBinding]="datos"
+    [pageSize]="10"
+    [pageable]="true"
+    [sortable]="true"
+    [navigable]="true"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <button kendoGridAddCommand type="button">Agregar Nuevo</button>
+    </ng-template>
+    <ng-container *ngFor="let column of columns">
+      <kendo-grid-column
+        [editor]="column.dataType"
+        [field]="column.header"
+        [title]="column.header"
+      >
+        <input
+          [(ngModel)]="column.header"
+          kendoGridFocusable
+          [name]="column.header"
+          class="k-textbox"
+          [required]="column.required"
+        />
+      </kendo-grid-column>
+    </ng-container>
+    <kendo-grid-command-column title="Acciones" width="220">
+      <ng-template kendoGridCellTemplate let-isNew="isNew">
+        <button kendoGridEditCommand type="button" [primary]="true">
+          Actualizar
+        </button>
+        <button kendoGridRemoveCommand type="button">Eliminar</button>
+        <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">
+          {{ isNew ? "Add" : "Update" }}
+        </button>
+        <button kendoGridCancelCommand type="button">
+          {{ isNew ? "Discard changes" : "Cancel" }}
+        </button>
+      </ng-template>
+    </kendo-grid-command-column>
+  </kendo-grid>
+</form>

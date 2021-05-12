@@ -130,6 +130,7 @@
   },
   "defaultProject": "SmartsoftTestFrontEnd",
   "cli": {
-    "analytics": "80fee465-f997-4d51-b273-60a31208e6ea"
+    "analytics": "80fee465-f997-4d51-b273-60a31208e6ea",
+    "defaultCollection": "@ngrx/schematics"
   }
 }

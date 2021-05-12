@@ -4,16 +4,15 @@ import {
   loadTablass,
   loadTablassSuccess,
   loadTablassFailure,
-} from '../actions/tablas.actions';
+} from '../actions';
 
+export const tablasFeatureKey = 'tablas';
 export interface TablasState {
   loaded: boolean;
   loading: boolean;
   error: any;
   listaTablas: Tabla[];
 }
-
-export const tablasFeatureKey = 'tablas';
 
 export const initialTableState: TablasState = {
   loaded: false,

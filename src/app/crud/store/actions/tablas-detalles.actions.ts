@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
 
 export const loadTablasDetalless = createAction(
-  '[TablasDetalles] Load TablasDetalless'
+  '[TablasDetalles] Load TablasDetalless',
+  props<{ id: any }>()
 );
 
 export const loadTablasDetallessSuccess = createAction(

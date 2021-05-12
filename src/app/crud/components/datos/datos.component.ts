@@ -1,9 +1,5 @@
-import { Observable } from 'rxjs';
-import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { GridDataResult } from '@progress/kendo-angular-grid';
-import { State, process } from '@progress/kendo-data-query';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { Columna } from '../../interfaces/columns.interface';
 import { Store } from '@ngrx/store';

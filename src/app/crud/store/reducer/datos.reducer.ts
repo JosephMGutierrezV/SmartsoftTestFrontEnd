@@ -70,7 +70,7 @@ const _reducerDatos = createReducer(
     loaded: false,
     loading: false,
     error: error,
-    listaDatos: [],
+    listaDatos: [...state.listaDatos],
   })),
   on(postDatoss, (state, { id, data }) => ({
     ...state,

@@ -9,7 +9,11 @@ import { Columna } from '../../interfaces/columns.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
 import { environment } from '../../../../environments/environment';
-import { postDatoss, deleteDatoss } from '../../store/actions/datos.actions';
+import {
+  postDatoss,
+  deleteDatoss,
+  putDatoss,
+} from '../../store/actions/datos.actions';
 
 @Component({
   selector: 'app-datos',
@@ -46,17 +50,18 @@ export class DatosComponent implements OnInit {
   saveHandler({ sender, rowIndex, formGroup, isNew }) {
     const product: any = formGroup.value;
 
-    console.log(product);
-
     this.store.dispatch(postDatoss({ id: this.id, data: product }));
 
-    sender.closeRow(rowIndex);
+    this.editedRowIndex = rowIndex;
+    this.closeEditor(sender, rowIndex);
   }
 
-  removeHandler({ dataItem }) {
+  removeHandler({ sender, dataItem, rowIndex }) {
     console.log(dataItem);
     const { _id } = dataItem;
     this.store.dispatch(deleteDatoss({ id: _id }));
+    this.editedRowIndex = rowIndex;
+    sender.closeRow(rowIndex);
   }
 
   editHandler({ sender, rowIndex, dataItem }) {
@@ -67,9 +72,12 @@ export class DatosComponent implements OnInit {
     this.editedRowIndex = rowIndex;
 
     sender.editRow(rowIndex, this.formGroup);
+
+    this.store.dispatch(putDatoss({ id: this.id, data: dataItem }));
   }
 
   public cancelHandler({ sender, rowIndex }) {
+    this.editedRowIndex = rowIndex;
     this.closeEditor(sender, rowIndex);
   }
 

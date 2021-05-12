@@ -45,6 +45,14 @@ export class CrudService {
       .pipe(map((resp) => resp['tabla']));
   }
 
+  public putDatos(id: string, data: any) {
+    const body = this.getModel(id, data);
+    const { _id } = data;
+    return this.http
+      .put(`${environment.wsUrl}/api/Data/update-item/${_id}`, body)
+      .pipe(map((resp) => resp['tabla']));
+  }
+
   private getModel(id: string, data: any) {
     let object: any;
     if (id == environment.tabla1) {
@@ -66,7 +74,6 @@ export class CrudService {
       });
     } else if (id == environment.tabla3) {
       return (object = {
-        tableTypeId: id,
         T3C1: data.T3C1,
         T3C2: data.T3C2,
         T3C3: data.T3C3,

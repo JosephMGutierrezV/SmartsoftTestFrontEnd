@@ -21,12 +21,12 @@ export const loadDatossFailure = createAction(
 
 export const postDatoss = createAction(
   '[Datos] Create Datoss',
-  props<{ id: any; data: any[] }>()
+  props<{ id: any; data: any }>()
 );
 
 export const postDatossSuccess = createAction(
   '[Datos] Create Datoss Success',
-  props<{ data: any }>()
+  props<{ data: any[] }>()
 );
 
 export const postDatossFailure = createAction(

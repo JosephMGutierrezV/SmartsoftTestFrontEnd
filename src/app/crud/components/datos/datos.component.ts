@@ -9,9 +9,7 @@ import { Columna } from '../../interfaces/columns.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
 import { environment } from '../../../../environments/environment';
-import { FistTable } from '../../models/TableType1.model';
-import { SecondTable } from '../../models/TableType2.models';
-import { ThirdTable } from '../../models/TableType3.models';
+import { postDatoss } from '../../store/actions/datos.actions';
 
 @Component({
   selector: 'app-datos',
@@ -45,7 +43,15 @@ export class DatosComponent implements OnInit {
     sender.addRow(this.formGroup);
   }
 
-  saveHandler({ sender, rowIndex, formGroup, isNew }) {}
+  saveHandler({ sender, rowIndex, formGroup, isNew }) {
+    const product: any = formGroup.value;
+
+    console.log(product);
+
+    this.store.dispatch(postDatoss({ id: this.id, data: product }));
+
+    sender.closeRow(rowIndex);
+  }
 
   removeHandler({ dataItem }) {}
 

@@ -39,6 +39,12 @@ export class CrudService {
       .pipe(map((resp) => resp['tabla']));
   }
 
+  public deleteDatos(id: string) {
+    return this.http
+      .delete(`${environment.wsUrl}/api/Data/delete-item/${id}`)
+      .pipe(map((resp) => resp['tabla']));
+  }
+
   private getModel(id: string, data: any) {
     let object: any;
     if (id == environment.tabla1) {
@@ -59,6 +65,12 @@ export class CrudService {
         T2C5: data.T2C5,
       });
     } else if (id == environment.tabla3) {
+      return (object = {
+        tableTypeId: id,
+        T3C1: data.T3C1,
+        T3C2: data.T3C2,
+        T3C3: data.T3C3,
+      });
     }
   }
 }

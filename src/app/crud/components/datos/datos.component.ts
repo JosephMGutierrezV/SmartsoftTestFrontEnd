@@ -9,7 +9,7 @@ import { Columna } from '../../interfaces/columns.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.reducers';
 import { environment } from '../../../../environments/environment';
-import { postDatoss } from '../../store/actions/datos.actions';
+import { postDatoss, deleteDatoss } from '../../store/actions/datos.actions';
 
 @Component({
   selector: 'app-datos',
@@ -53,7 +53,11 @@ export class DatosComponent implements OnInit {
     sender.closeRow(rowIndex);
   }
 
-  removeHandler({ dataItem }) {}
+  removeHandler({ dataItem }) {
+    console.log(dataItem);
+    const { _id } = dataItem;
+    this.store.dispatch(deleteDatoss({ id: _id }));
+  }
 
   editHandler({ sender, rowIndex, dataItem }) {
     this.closeEditor(sender);

@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as datosActions from '../actions';
 import { tap, mergeMap, map } from 'rxjs/operators';
 import { CrudService } from '../../services/crud.service';
+import { deleteDatoss } from '../actions/datos.actions';
 
 @Injectable()
 export class DatosEffects {
@@ -26,6 +27,17 @@ export class DatosEffects {
         this.crudServices
           .postDatos(id, data)
           .pipe(map((resp) => datosActions.postDatossSuccess({ data: resp })))
+      )
+    )
+  );
+
+  deleteDatoss$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(datosActions.deleteDatoss),
+      mergeMap(({ id }) =>
+        this.crudServices
+          .deleteDatos(id)
+          .pipe(map((resp) => datosActions.deleteDatossSuccess({ data: resp })))
       )
     )
   );

@@ -5,6 +5,9 @@
 export const environment = {
   production: false,
   wsUrl: 'http://localhost:8080',
+  tabla1: '6099dcb81d95ef68402e9b4b',
+  tabla2: '6099de3f97ca8d12041ef575',
+  tabla3: '6099deb797ca8d12041ef57b',
 };
 
 /*

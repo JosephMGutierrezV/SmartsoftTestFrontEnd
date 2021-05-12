@@ -2,8 +2,12 @@
 <hr />
 <form novalidate #myForm="ngForm">
   <kendo-grid
-    [kendoGridTemplateEditing]="createNew"
     [kendoGridBinding]="datos"
+    (save)="saveHandler($event)"
+    (remove)="removeHandler($event)"
+    (add)="addHandler($event)"
+    (edit)="editHandler($event)"
+    (cancel)="cancelHandler($event)"
     [pageSize]="10"
     [pageable]="true"
     [sortable]="true"
@@ -13,11 +17,7 @@
       <button kendoGridAddCommand type="button">Agregar Nuevo</button>
     </ng-template>
     <ng-container *ngFor="let column of columns">
-      <kendo-grid-column
-        [editor]="column.dataType"
-        [field]="column.header"
-        [title]="column.header"
-      >
+      <kendo-grid-column [field]="column.header" [title]="column.header">
         <input
           [(ngModel)]="column.header"
           kendoGridFocusable

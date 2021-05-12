@@ -1,7 +1,6 @@
 import { Columna } from './columns.interface';
 
 export interface Tabla {
-  id: number;
+  _id: any;
   name: string;
-  columns?: Columna[];
 }

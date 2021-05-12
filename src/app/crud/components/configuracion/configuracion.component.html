@@ -1,7 +1,12 @@
-<h2 class="display-4 title">Configuraciones</h2>
+<h2>Configuraciones</h2>
 <hr />
 <ul class="list-group">
   <li class="list-group-item">
-    <kendo-dropdownlist [data]="listItems"> </kendo-dropdownlist>
+    <kendo-dropdownlist
+      [data]="listItems"
+      (selectionChange)="selectionChange($event)"
+      [(ngModel)]="selectedValue"
+    >
+    </kendo-dropdownlist>
   </li>
 </ul>
